@@ -1,9 +1,12 @@
 pipeline {
     agent any
+    triggers {
+        pollSCM('0 * * ? * * *')
+    }
     stages {
-        stage('Hello') {
+        stage('build') {
             steps {
-                echo 'Hello World'
+                sh "docker build -t api_test_base . -f Dockerfile_base"
             }
         }
     }
