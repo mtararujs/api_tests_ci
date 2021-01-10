@@ -75,8 +75,8 @@ def test(String environment){
             alwaysLinkToLastBuild: false, 
             keepAll: false, 
             reportDir: '', 
-            reportFiles: 'report_${environment}.html', 
-            reportName: 'Test Report ${environment}', 
+            reportFiles: "report_${environment}.html", 
+            reportName: "Test Report ${environment}", 
             reportTitles: '']) 
     }
 }
