@@ -20,7 +20,7 @@ pipeline {
         stage('test-dev') {
             steps {
                 script{
-                    test("prd")
+                    test("dev")
                 }
             }
         }
@@ -34,7 +34,7 @@ pipeline {
         stage('test-int') {
             steps {
                 script{
-                    test("prd")
+                    test("int")
                 }
             }
         }
