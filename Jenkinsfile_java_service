@@ -69,6 +69,14 @@ def test(String environment){
     finally{
         sh "docker cp api_test_executor_${environment}:/usr/src/api-tests/test-output/report.html report_${environment}.html"
         sh "docker stop api_test_executor_${environment}"
-        sh "docker rm api_test_executor_${environment}" 
+        sh "docker rm api_test_executor_${environment}"
+        publishHTML([
+            allowMissing: false, 
+            alwaysLinkToLastBuild: false, 
+            keepAll: false, 
+            reportDir: '', 
+            reportFiles: 'report_${environment}.html', 
+            reportName: 'Test Report ${environment}', 
+            reportTitles: '']) 
     }
 }
