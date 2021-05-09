@@ -52,6 +52,17 @@ pipeline{
             }
         }
     }
+    post { 
+        always { 
+            echo 'This is always post section'
+        }
+        success{
+            echo 'This is success post section'
+        }
+        failure{
+            echo 'This is failure post section'
+        }
+    }
 }
 
 def deploy(String environment){
