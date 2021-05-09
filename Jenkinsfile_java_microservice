@@ -52,3 +52,11 @@ def deploy(String environment){
     echo "Deployment to ${environment} triggered.."
     build job: "ui_tests", parameters: [string(name: "ENVIRONMENT", value: "${environment}")]
 }
+
+def test(String environment){
+    echo "Running tests on ${environment}"
+    sh "docker run --network=host -d --name api_test_executor_${environment} api_test_executor:latest"
+    sh "docker exec api_test_executor_${environment} cucumber --tags=@${environment} --format html --out test-output/report.html"
+    sh "docker cp api_test_executor_${environment}:/usr/src/api-tests/test-output/report.html report_${envinronmnet}.html"
+    sh "docker rm -f api_test_executor_${environment}"
+}
