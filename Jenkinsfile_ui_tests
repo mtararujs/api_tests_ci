@@ -10,6 +10,12 @@ pipeline{
         stage('ui-test-execution') {
             steps {
                 echo "Running UI tests ${params.ENVIRONMENT}"
+                script {
+                    def browsers = ["chrome", "safari", "firefox"]
+                    for (int i = 0; i < browsers.size(); i++){
+                        echo "Running UI tests on${params.ENVIRONMENT} environment using ${browsers[i]}"    
+                    }
+                }
             }
         }
     }
